@@ -1,40 +1,40 @@
+import 'react-native-gesture-handler';
 
+import React, { useEffect } from 'react';
+import { TamaguiProvider } from 'tamagui';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
 
-import "react-native-gesture-handler";
+import config from './tamagui.config';
 
-	import React, { useEffect } from "react";
-	import { TamaguiProvider } from 'tamagui';
-	import * as SplashScreen from 'expo-splash-screen';
-	import { useFonts } from 'expo-font';
+SplashScreen.preventAutoHideAsync();
 
-	import config from './tamagui.config'
+import RootStack from './src/navigation';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
-	SplashScreen.preventAutoHideAsync();
-
-
-import RootStack from "./src/navigation";
+const client = new QueryClient();
 
 export default function App() {
-	
-		const [loaded] = useFonts({
-			Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
-			InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
-		});
+  const [loaded] = useFonts({
+    Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
+    InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
+  });
 
-		useEffect(() => {
-			if (loaded) {
-				SplashScreen.hideAsync();
-			}
-		}, [loaded])
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
 
-		if (!loaded) {
-			return null;
-		}
+  if (!loaded) {
+    return null;
+  }
 
-		return (
-			<TamaguiProvider config={config}>
-				<RootStack />
-			</TamaguiProvider>
-		);
-	
+  return (
+    <TamaguiProvider config={config}>
+      <QueryClientProvider client={client}>
+        <RootStack />
+      </QueryClientProvider>
+    </TamaguiProvider>
+  );
 }
