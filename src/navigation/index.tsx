@@ -7,11 +7,15 @@ import { Button, Text } from 'tamagui';
 import Overview from '../screens/overview';
 import Details from '../screens/details';
 import MovieList from '~/screens/movieList';
+import SceneList from '~/screens/SceneList';
+import CharacterList from '~/screens/CharacterList';
 
 export type RootStackParamList = {
   Overview: undefined;
   Details: { name: string };
   Movies: undefined;
+  Scenes: undefined;
+  Characters: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -40,6 +44,8 @@ export default function RootStack() {
           })}
         />
         <Stack.Screen name="Movies" component={MovieList} />
+        <Stack.Screen name="Scenes" component={SceneList} />
+        <Stack.Screen name="Characters" component={CharacterList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

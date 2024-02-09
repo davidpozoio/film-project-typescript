@@ -1,4 +1,4 @@
 export const environment = {
-  IP_BACK: '10.0.13.244',
-  HOST_BACK: `http://10.0.13.244:8081`,
+  IP_BACK: '10.10.3.68',
+  HOST_BACK: `http://192.168.18.40:8082`,
 };
